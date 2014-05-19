@@ -17,6 +17,7 @@ class C_loginlogout extends CI_Controller {
 	
 	public function index()
 	{
+		$data['title'] = "Login";
 		$data['status'] = $this->session->userdata('status');
 		$data['nama'] = $this->session->userdata('nama');
 		$data['message'] = "";

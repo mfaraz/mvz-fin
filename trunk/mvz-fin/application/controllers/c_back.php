@@ -14,24 +14,29 @@ class C_back extends CI_Controller {
 		$this->load->model('m_back');
 		$this->load->helper('template');
 		
+		
 	}
 
 	public function index()
 	{
-		$data['title'] = "Home";
-		// echo '<pre>'; print_r($this->session->userdata('name')); echo '<pre/>';
-		// die();
-		
-		//var_dump($this->session->userdata('name'));
-		//die();
-		
-		$data['message'] = "";
-		$data['personname'] = $this->session->userdata('name')->name;
-		$data['data_in'] = $this->m_back->get_DataIncome();
-		$data['data_bu'] = $this->m_back->get_DataBudget();
-		$data['data_ex'] = $this->m_back->get_DataExpense();
-		loadView($data,'v_home');
-		
+		$data['status'] = $this->session->userdata('status');
+		if(!($data['status'])) { redirect('/', 'refresh'); }
+		else
+		{
+			$data['title'] = "Home";
+			// echo '<pre>'; print_r($this->session->userdata('name')); echo '<pre/>';
+			// die();
+			
+			//var_dump($this->session->userdata('name'));
+			//die();
+			
+			$data['message'] = "";
+			$data['personname'] = $this->session->userdata('name')->name;
+			$data['data_in'] = $this->m_back->get_DataIncome();
+			$data['data_bu'] = $this->m_back->get_DataBudget();
+			$data['data_ex'] = $this->m_back->get_DataExpense();
+			loadView($data,'v_home');
+		}
 	}
 	
 }
